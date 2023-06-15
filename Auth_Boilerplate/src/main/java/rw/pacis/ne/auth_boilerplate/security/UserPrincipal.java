@@ -5,48 +5,58 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import rw.pacis.ne.auth_boilerplate.enums.EGender;
+import rw.pacis.ne.auth_boilerplate.enums.ERole;
 import rw.pacis.ne.auth_boilerplate.models.User;
-
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
 @Setter
 @AllArgsConstructor
 public class UserPrincipal implements UserDetails {
-    private UUID id;
 
-    private String email;
+    private UUID id;
 
     private String firstName;
 
     private String lastName;
 
-    private String mobile;
+    private String phoneNumber;
+
+    private String email;
 
     private String nationalId;
 
     private EGender gender;
-    @JsonIgnore
-    private String password;
 
+    private ERole role;
+
+    private String password;
 
     private Collection<? extends GrantedAuthority> authorities;
 
     public static UserPrincipal create(User user) {
 
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
+
         return new UserPrincipal(
                 user.getId(),
-                user.getEmail(),
                 user.getFirstName(),
                 user.getLastName(),
                 user.getPhoneNumber(),
+                user.getEmail(),
                 user.getNationalId(),
                 user.getGender(),
+                user.getRole(),
                 user.getPassword(),
-                null);
+                authorities);
     }
 
     @Override

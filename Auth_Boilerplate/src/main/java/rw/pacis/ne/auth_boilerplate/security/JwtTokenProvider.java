@@ -30,6 +30,12 @@ public class JwtTokenProvider {
 
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+        for (GrantedAuthority role : userPrincipal.getAuthorities()) {
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getAuthority()));
+        }
+
 
         User authUser = Mapper.getUserFromDTO(userPrincipal);
 
@@ -38,6 +44,7 @@ public class JwtTokenProvider {
                 .setId(authUser.getId() + "")
                 .setSubject(userPrincipal.getId() + "")
                 .claim("user", authUser)
+                .claim("authorities", grantedAuthorities)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(expiryDate)
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)

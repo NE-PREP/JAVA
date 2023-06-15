@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import rw.pacis.ne.auth_boilerplate.enums.EGender;
+import rw.pacis.ne.auth_boilerplate.enums.ERole;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.UUID;
@@ -46,6 +48,10 @@ public class User {
     @Column(name = "gender")
     private EGender gender;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private ERole role = ERole.STANDARD;
+
     @JsonIgnore
     @NotBlank
     @Column(name = "password")
@@ -59,6 +65,15 @@ public class User {
         this.gender = gender;
     }
 
+    public User(String firstName, String lastName, String phoneNumber, String email, EGender gender, ERole role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.role = role;
+    }
+
     public User(String firstName, String lastName, String phoneNumber, String email, EGender gender, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -66,6 +81,16 @@ public class User {
         this.email = email;
         this.gender = gender;
         this.password = password;
+    }
+
+    public User(String firstName, String lastName, String phoneNumber, String email, EGender gender, String password, ERole role) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.gender = gender;
+        this.password = password;
+        this.role = role;
     }
 
     public String getFullName() {

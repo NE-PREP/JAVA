@@ -78,7 +78,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/api/v1/config/**",
                         "/**/*.js",
-                        "/api/v1/users/register",
+                        "/api/v1/users/register/**",
                         "/api/v1/auth/**",
                         "/v2/api-docs",
                         "/configuration/ui",
