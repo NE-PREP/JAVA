@@ -15,3 +15,9 @@ Auth_Boilerplate/.mvn
 Auth_Boilerplate/mvnw
 Auth_Boilerplate/mvnw.cmd
 Auth_Boilerplate/.idea
+
+Equipment-Distribution/server/target
+Equipment-Distribution/server/.mvn
+Equipment-Distribution/server/mvnw
+Equipment-Distribution/server/mvnw.cmd
+Equipment-Distribution/server/.idea
