@@ -16,6 +16,8 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/laptops")
+@CrossOrigin
+
 public class LaptopController {
     private final ILaptopService service;
 

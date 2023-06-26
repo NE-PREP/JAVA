@@ -17,6 +17,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/api/v1/employee-laptops")
+@CrossOrigin
 public class EmployeeLaptopController {
     private final IEmployeeLaptopService service;
 

@@ -16,6 +16,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
+@CrossOrigin
 public class UserController {
 
     private final IUserService userService;
