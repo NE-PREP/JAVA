@@ -1,12 +1,17 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Login } from "./pages/Login";
-import { PrivateAdminRoute, PrivateUserRoute, PublicRoute } from "./utils/Route";
+import {
+  PrivateAdminRoute,
+  PrivateUserRoute,
+  PublicRoute,
+} from "./utils/Route";
 import { Logout } from "./pages/Logout";
 import { ToastContainer } from "react-toastify";
 import { Register } from "./pages/Register";
 import { Dashboard } from "./pages/Dashboard";
 import { ShoppingCartProvider } from "./contexts";
 import { Products } from "./pages/Products";
+import { MyOrder } from "./pages/MyOrder";
 
 function App() {
   return (
@@ -35,6 +40,11 @@ function App() {
               path="/products"
               exact
               element={<PrivateUserRoute element={Products} />}
+            />
+            <Route
+              path="/my-orders/last"
+              exact
+              element={<PrivateUserRoute element={MyOrder} />}
             />
             <Route exact path="/logout" element={<Logout />} />
           </Routes>
